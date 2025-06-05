@@ -1,0 +1,33 @@
+<h1>Gerenciamento de Heróis</h1>
+
+<!-- Formulário -->
+<div class="form-card">
+  <h2>{{ heroForm.id === 0 ? 'Adicionar Herói' : 'Editar Herói' }}</h2>
+
+  <input [(ngModel)]="heroForm.nome" placeholder="Nome" />
+  <input [(ngModel)]="heroForm.nomeHeroi" placeholder="Nome do Herói" />
+  <input [(ngModel)]="heroForm.dataNascimento" placeholder="Data de Nascimento" type="date" />
+  <input [(ngModel)]="heroForm.altura" placeholder="Altura (m)" type="number" />
+  <input [(ngModel)]="heroForm.peso" placeholder="Peso (kg)" type="number" />
+  <input [(ngModel)]="heroForm.superpoderes" placeholder="Superpoderes" />
+
+  <button (click)="heroForm.id === 0 ? createHero() : updateHero()">
+    {{ heroForm.id === 0 ? 'Cadastrar' : 'Atualizar' }}
+  </button>
+  <button (click)="resetForm()">Limpar</button>
+</div>
+
+<hr />
+
+<!-- Lista de Heróis -->
+<div *ngFor="let hero of heros" class="card">
+  <h2>{{ hero.nomeHeroi }}</h2>
+  <p><strong>Nome:</strong> {{ hero.nome }}</p>
+  <p><strong>Data de Nascimento:</strong> {{ hero.dataNascimento }}</p>
+  <p><strong>Altura:</strong> {{ hero.altura }} m</p>
+  <p><strong>Peso:</strong> {{ hero.peso }} kg</p>
+  <p><strong>Superpoderes:</strong> {{ hero.superpoderes }}</p>
+
+  <button (click)="editHero(hero)">Editar</button>
+  <button (click)="deleteHero(hero.id)">Excluir</button>
+</div>
